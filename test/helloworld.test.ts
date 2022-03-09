@@ -10,6 +10,7 @@ describe("Hello World", function () {
     const HelloWorld = await ethers.getContractFactory("HelloWorld");
     const hello = await HelloWorld.deploy();
     await hello.deployed();
+    console.log(hello);
     expect(await hello.hello()).to.equal("Hello World");
   });
 });
