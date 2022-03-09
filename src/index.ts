@@ -27,7 +27,7 @@ async function requestAccounts() {
 
 async function run() {
   if (!await hasAccounts() && !await requestAccounts()) {
-    throw new Error("There was an issue requesting accounts. Please refresh your window.")
+    throw new Error("There was an issue requesting accounts. Please refresh your window and ensure you have Metamask installed")
   }
  
   //the address is one from a network run locally via: npm hardhat node
