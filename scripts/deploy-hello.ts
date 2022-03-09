@@ -3,13 +3,14 @@ import { ethers } from "hardhat";
 
 async function deploy() {
   const HelloWorld = await ethers.getContractFactory("HelloWorld");
-  const hello = await HelloWorld.deploy();
-  await hello.deployed();
-  return hello;
+  const helloContract = await HelloWorld.deploy();
+  await helloContract.deployed();
+  return helloContract;
 }
 
-async function sayHello(hello) {
-  console.log("Say hello: ", await hello.hello());
+//@ts-ignore
+async function sayHello(helloContract) {
+  console.log("Say hello: ", await helloContract.hello());
 }
 
 deploy().then(sayHello);
