@@ -1,5 +1,7 @@
 import { ethers } from "ethers";
-
+//@ts-ignore
+import Counter from "../artifacts/contracts/Counter.sol/Counter.json";
+import Hello from "../artifacts/contracts/HelloWorld.sol/HelloWorld.json";
 // Connecting to metamask
 
 //for some reason, passing the object returned by this function does not work
@@ -33,24 +35,17 @@ async function run() {
   //the address is one from a network run locally via: npm hardhat node
   const hello = new ethers.Contract(
     "0x5fbdb2315678afecb367f032d93f642f64180aa3", 
-    [
-      "function hello() public pure returns (string memory)"
-    ], 
+    Hello.abi, 
      //@ts-ignore
     new ethers.providers.Web3Provider(window.ethereum)
   );
 
   const counter = new ethers.Contract(
-    "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512", 
-    [
-      "function count () public",
-      "function getCount () public view returns (uint256)"
-    ],
+    "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853", 
+    Counter.abi,
     //@ts-ignore
     new ethers.providers.Web3Provider(window.ethereum).getSigner()
   );
-
-  console.log("Hi",counter);
 
   const newDiv = document.createElement('div');
   newDiv.textContent = await counter.getCount();
@@ -62,9 +57,13 @@ async function run() {
     } catch {
       window.alert("You need to use a wallet with sufficient funds");
     }
-    
     newDiv.textContent = await counter.getCount();
   }
+
+  counter.on(counter.filters.CounterInc(), function(count) {
+    newDiv.textContent = count;
+  });
+
   const helloContractText = document.createElement('p');
   helloContractText.textContent = await hello.hello();
   

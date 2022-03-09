@@ -37,8 +37,8 @@
       ]
     },
     "/Users/alfreddelle/Documents/Projects/Ethereum/jpegdegens/contracts/Counter.sol": {
-      "lastModificationDate": 1646849226981,
-      "contentHash": "bd4b2614de34832157f409a644c5ccc0",
+      "lastModificationDate": 1646867484301,
+      "contentHash": "3835635f073bc5e10b08f7e17fbdc55d",
       "sourceName": "contracts/Counter.sol",
       "solcConfig": {
         "version": "0.8.10",
